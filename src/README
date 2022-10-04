@@ -1,0 +1,77 @@
+Nume: Ciineanu Stefan-Andrei
+Grupa: 322CD
+Username pe ACS: stefan.ciineanu
+
+Pentru afisare si citire, m-am folosit de obiectele JSON puse la dispozitie in scheletul temei.
+La inceput am duplicat toate datele din input Actors, Movies, Serials etc in alte clase pentru a 
+putea modifica in aceste clase nou create.
+Fiecare query, comanda sau recomandare imi vor returna un mesaj de tip String pe care il voi afisa.
+
+Comenzi: 
+Pentru comanda favorite: caut utilizatorul dorit in lista de utilizatori, apoi verific daca filmul
+de adaugat la favorite a fost vizionat folosindu-ma de mapul care retine historyul userului, 
+daca filmul nu a fost vizionat afisez un mesaj cu eroare, apoi verific daca filmul a fost adaugat deja 
+de user la favorite, iar daca indeplineste aceste 2 conditii adaug filmul la favorite
+Pentru comanda View: caut userul cu numele dat in lista aferenta utilizatorilor, verific daca
+filmul pe care vrem sa il vizionam a fost vizionat deja si daca nu a fost vizionat il adaugam 
+in mapul userului care contine istoricul vizionarilor.
+Pentru comanda Rating: caut utilizatorui in lista de useri, verific daca filmul de adaugat la
+favorite a fost vizionat, in acest proces salvez si cate ratinguri da un user, iar daca nu a 
+vizionat filmul afisez o prima eroare. Dupa acestea, verific daca userul a dat deja rating la 
+acest film, in caz afirmativ afisez alta eroare. Daca indeplineste aceste conditii, voi adauga in
+final filmul in lista userului de filme favorite, salvand numarul de ratinguri date si ratingul
+pt fiecare film in parte pt alte taskuri.
+
+Queries:
+Pentru Actori - Average: parcurg lista de actori si video-urile in care acestia au jucat si extrag 
+ratingul acestora. Salvez intr-o lista auxiliara actorii si ratingul acestora in functie de filme, 
+sortez aceasta lista, creez outputul in functie de criteriile date . Pt sortare am creat o alta
+clasa care implementeaza comparator
+Pentru Actori - Awards: pentru toti actorii verific daca au primit toate premiile cerute, daca da
+salvez numarul acestora. Adaug actorii care indeplinesc filtrele cerute intr-o lista auxiliara, 
+dupa care sortez aceasta lista si creez outputul.
+Pentru Actori - Filter Description: parcurg lista de actori si verific daca in descrierea actorului 
+apar toate keywordurile, daca da adaug actorii intr-o lista auxiliara, sortez aceasta lista si o
+afisez respectand criteriile cerute in input.
+Pentru Video - Rating: parcurg lista de video-uri, le adaug pe cele cu rating nenul, aplicand
+filtrele in lista de sortat, adaugarea se va face intr-un vector auxiliar pe care il voi 
+sorte ulterior si afisa in output.
+Pentru Video - Favorite: parcurg lista de video-uri si lista de utilizatori, extrag de cate ori
+a fost adaugat la favorite un video. Acest proces se face aplicand filtrele din input, iar 
+clipurile care indeplinesc aceste conditii vor fi adaugate intr-o lista auxiliara , sortate si
+afisate in output.
+Pentru Video - Longest: parcurg lista de filme, verific daca respecta filtrele din input, daca
+da le adaug intr-o lista auxiliara, sortez lista dupa durata videoclipului si afisez aceasta lista
+Pentru Video - Most Viewed: parcurg filmele si userii si extrag din history-ul userilor numarul de 
+vizualizari al filmului. Dupa aceea, aplic filtrul din input si creez o lista auxiliara ce respecta
+filtrele, sortez noua lista dupa nr de vizualizari si o afisez respectand conditiile din input.
+Pentru utilizatori - Number of ratings: sortez lista de utilizatori dupa numarul de ratinguri date,
+salvez userii care numarul de ratinguri nenul aka active users intr-o lista auxiliara de useri si 
+afisez aceasta lista. Felul in care am implementat taskurile precedente si modificat clasele, 
+mai ales commands, m-au ajutat in rezolvarea acestui query.
+Recomandari: 
+Nonpremium - Standard: parcurg lista de utilizatori si gasesc utilizatorul pt care trb sa intorc
+recomandarea, apoi parcurg lista de filme in paralel cu istoricul de filme vazute al utilizatorului, 
+iar cand un film nu se afla in istoric il afisez pentru a pastra ordinea ceruta.
+Nonpremium - Best unseen: prima data am de creat o lista cu filme si seriale nevazuta. Pentru asta
+parcurg userii, extrag userul pentru care voi face recomandarea apoi parcurg lista de filme si
+ istoricul filmelor vazute de user, le compar si extrag videourile nevazute. Lista cu vide-ouri
+nevazute o sortez dupa rating si o afisez.
+Premium - Popular: in functie de useri calculez numarul de vizionari ale videoclipurilor, dupa care
+creez o lista cu cele mai populare genuri (extrag nr de vizionari ale filmelor pt fiecare gen si 
+sortez descrescator). Dupa asta, creez o alta lista cu videoclipuri nevazute de utilizator. Daca
+utilizatorul e premium caut un videoclip nevazut care include cel mai popular gen si il afisez.
+Premium - Favorite: extrag in functie de useri de cate ori a fost adaugat la favorite un videoclip, 
+creez o lista cu filme si seriale nevazute, iar daca utilizatorul e premium: sortez listele create
+dupa numarul de adaugari la favorite si afisez primul videoclip din aceasta lista.
+Premium - Search: parcurg videoclipurile si le salvez intr-o lista noua pe cele de acelasi gen si 
+cu rating nenul, dupa care creez o lista auxiliara cy video-urile nevazute de utilizator pe baza 
+listei videoclipurilor de acelasi gen. Practic acum am obtinut videoclipurile de genul cerut nevazute 
+de utilizator. Sortez aceasta lista dupa rating si nume si o afisez. 
+ 
+Observatii:
+De remarcat este faptul ca pentru seriale au fost mai dificil de aplicat queriurile 
+E destul de greu sa lucram cu git ul daca nu am facut la laborator hands on
+
+
+
